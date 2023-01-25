@@ -1,0 +1,62 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-image: url("background_image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color:white;
+}
+
+
+.title{
+    font-family:'Courier New', Courier, monospace;
+    justify-content:space-between;
+    text-align: center;
+    margin-right:250px;
+}
+
+header{
+    display:flex;
+    justify-content: space-between;
+}   
+
+.logo{
+    width: 180px;
+    height:160px;
+}
+
+h1{
+    margin-left:100px;
+}
+
+h2{
+    margin-left:95px;
+}
+.block{
+    background-color: white;
+    border-radius: 10px;
+    width:500px;
+    margin-left: 800px;
+    height: 300px;
+}
+
+div{
+    margin-bottom: 5px;
+    margin-left:10px;
+    font-size: 13px;
+}
+
+form{
+    color:black;
+    padding: 0px;
+    margin:0px;
+}
+
+.marge{
+    margin-top:10px;
+}
+
+section{
+    margin-left:490px;
+    color:white;
+}

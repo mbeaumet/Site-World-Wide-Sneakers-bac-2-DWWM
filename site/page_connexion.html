@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>World Wide Sneakers - Connexion</title>
+    <link rel="stylesheet" href="page_connexion.css">
+</head>
+<body>
+
+    <header>
+        <img src="logo.png">
+
+        <div class="title">
+            <h1>World Wide Sneakers</h1>
+            <h2> Buy & Sell Your Sneakers </h2>
+        </div>
+    </header>
+
+    <div class="background_color" class="marge">
+            
+        
+        <h3 class="title_h3"> Connexion </h3>
+        
+        
+
+        <!-- <p> Pour pouvoir vendre, acheter et échange vos sneakers </p> -->
+
+        <form action="login.php" method="post">
+
+            <div  class = "form_saisi">
+                <label for="name">nom d'utilisateur ou e-mail : </label>
+                <input class="size_block" type="text" required id="username" name="user_name">
+            </div>
+
+            <div  class = "form_saisi">
+                <label for="name">Mot de passe : </label>
+                <input type="password" required id="mdp" name="user_name">
+            </div>
+
+            <div class = "form_saisi">
+                <input id="sauvegarde" type="submit" value="Connectez-vous">
+            </div>
+
+        </form>
+        <p>
+        Vous n'avez pas de compte : 
+        <a href="page_inscription.html">Inscrivez vous</a>
+        </p>
+    </div>
+</body>
+</html>

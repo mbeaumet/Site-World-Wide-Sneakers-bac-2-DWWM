@@ -1,0 +1,58 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-image: url("background_image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+header{
+    display:flex;
+    justify-content: space-between;
+}   
+
+
+.title{
+    font-family:'Courier New', Courier, monospace;
+    justify-content:space-between;
+    text-align: center;
+}
+
+h1{
+    color:white;
+    margin-left:100px;
+    margin-right: 150px;
+
+}
+
+h2{
+    color:white;
+    margin-right:55px;
+}
+
+img{
+    width: 180px;
+    height:160px;
+}
+
+.image_product{
+    display:flex;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+
+p{
+    margin-top:50px;
+    text-align:center;
+    color: white;
+    margin-bottom:150px;
+}
+
+figure{
+    color:white;
+    text-align: center;
+}
+
+select{
+    margin-top: 35px;
+    margin-right: 50px;
+}
