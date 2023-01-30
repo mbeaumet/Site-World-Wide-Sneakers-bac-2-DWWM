@@ -19,12 +19,14 @@
 
 
 
-    <form method="post" action="sneakers.php">
-        <section>
+
+    <div class="marge_image">
+        <form method="post" action="sneakers.php">
             <label for="image_produit">Image</label>
             <input type="file" name="image_produit">
-        </section>
-    </form>
+        </form>
+    </div>
+
 
     <form>
         <div class="block">
@@ -32,6 +34,10 @@
                 <h3>Création produit</h3>
             </div>
 
+            <div>
+                <label  class="marge">Nom:</label>
+                <input type="text" name="size">
+            </div>
 
             <div>
                 <label  class="marge">Taille:</label>
@@ -40,7 +46,7 @@
 
             <div>
                 <label>Couleurs:</label>
-                <input type="text" name="brand">
+                <input type="text" name="color">
             </div>
                 
             <div>
@@ -54,20 +60,18 @@
             </div>
 
             <div>
-                <label>prix:</label>
-                <input type="text" name="price">
-            </div>
-
-            <div>
                 <label>stock:</label>
                 <input type="text" name="stock">
             </div>
 
             <div>
-                <label>Name</label>
-                <input type="text" name="Name">
+                <label>prix:</label>
+                <input type="text" name="price">
             </div>
 
+            <div>
+                <input id="sauvegarde" type="submit" value="Met en ligne ton article">
+            </div>
 
         </div>
     </form>

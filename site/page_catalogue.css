@@ -1,0 +1,31 @@
+header{
+    display:flex;
+    justify-content: space-between;
+}   
+
+
+.title{
+    font-family:'Courier New', Courier, monospace;
+    text-align: center;
+    margin-right:555px;
+}
+
+h1{
+    color:white;
+
+}
+
+h2{
+    color:white;
+}
+
+img{
+    width: 180px;
+    height:160px;
+}
+
+body{
+    background-image: url("background_image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}

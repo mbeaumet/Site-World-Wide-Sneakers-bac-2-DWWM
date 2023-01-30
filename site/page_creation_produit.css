@@ -36,8 +36,9 @@ h2{
     background-color: white;
     border-radius: 10px;
     width:500px;
-    margin-left: 800px;
+    margin-left: 400px;
     height: 300px;
+    color:black;
 }
 
 div{
@@ -46,17 +47,10 @@ div{
     font-size: 13px;
 }
 
-form{
-    color:black;
-    padding: 0px;
-    margin:0px;
-}
-
 .marge{
     margin-top:10px;
 }
 
-section{
-    margin-left:490px;
-    color:white;
+.marge_image{
+    margin-left:980px;
 }

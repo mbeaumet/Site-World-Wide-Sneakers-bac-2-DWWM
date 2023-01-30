@@ -10,7 +10,7 @@ else $method = $_GET;
 switch($method["opt"]){
 
     case 'select':
-        $req = $db->query("SELECT s.* FROM sneakers s INNER JOIN users u ON u.users_id = s.users_id");
+        $req = $db->query("SELECT s.* FROM sneakers");
         $articles = $req->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode(["success" => true, "articles" => $articles]);
         break;
@@ -31,7 +31,6 @@ switch($method["opt"]){
 
 
         case 'insert':
-            print_r($_POST);
             if (isset($_POST["size"],$_POST["color"],$_POST["brand"],$_POST["states"],$_POST["price"],$_POST["stock"]) && !empty(trim($_POST["size"])) && !empty(trim($_POST["color"])) && !empty(trim($_POST["brand"])) && !empty(trim($_POST["states"])) && !empty(trim($_POST["price"])) && !empty(trim($_POST["stock"]))){
                 $req= $db->prepare("INSERT INTO sneakers (brand,color,price,size,states,stock,users_id) VALUES (:brand,:color,:price,:size,:states,:stock,:users_id)");
                 // ajouter l'image 
