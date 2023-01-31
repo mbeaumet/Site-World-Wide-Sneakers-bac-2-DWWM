@@ -52,9 +52,8 @@ switch($method["opt"]){
         break;
 
     case 'update_id':
-        print_r($_POST);
         if (isset($_POST["size"],$_POST["color"],$_POST["brand"],$_POST["states"],$_POST["price"],$_POST["stock"]) && !empty(trim($_POST["size"])) && !empty(trim($_POST["color"])) && !empty(trim($_POST["brand"])) && !empty(trim($_POST["states"])) && !empty(trim($_POST["price"])) && !empty(trim($_POST["stock"]))){
-            $req= $db->prepare("UPDATE sneakers SET :size,:color,:brand,:states,:price,:stock WHERE users_id = :users_id");
+            $req= $db->prepare("UPDATE sneakers SET size=:size,color=:color,brand=:brand,states=:states,price=:price,stock=:stock WHERE users_id = :users_id");
             $req->bindValue(":size",$_POST["size"]);
             $req->bindValue(":color",$_POST["color"]);
             $req->bindValue(":brand",$_POST["brand"]);

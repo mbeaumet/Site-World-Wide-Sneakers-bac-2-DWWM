@@ -28,8 +28,8 @@ switch($method["opt"]) {
         }
     break;
     
-    case "update":
-        if(isset($_POST["firstname"], $_POST["lastname"], $_POST["email"],$_POST["users_name"],$_POST["newsletter"]) && !empty(trim($_POST["firstname"])) && !empty(trim($_POST["lastname"])) && !empty(trim($_POST["email"])) && !empty(trim($_POST["users_name"])) && !empty(trim($_POST["newsletter"]))) { 
+    case "update_id":
+        if(isset($_POST["firstname"], $_POST["lastname"], $_POST["email"],$_POST["user_name"],$_POST["users_id"]) && !empty(trim($_POST["firstname"])) && !empty(trim($_POST["lastname"])) && !empty(trim($_POST["email"])) && !empty(trim($_POST["user_name"])) && !empty(trim($_POST["users_id"]))) { 
             $password = "";
     
             if(isset($_POST["pwd"]) && !empty(trim($_POST["pwd"]))) {
@@ -41,27 +41,33 @@ switch($method["opt"]) {
                 }
                 $hash = password_hash($_POST["pwd"], PASSWORD_DEFAULT);
             } 
-            $req=$db->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, users_name=:users_name, $hash WHERE users_id = :users_id");
+
+            $req = $db->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, user_name=:user_name WHERE users_id=:users_id");
             
             $req->bindValue(":firstname", $_POST["firstname"]);
             $req->bindValue(":lastname" , $_POST["lastname"]);
             $req->bindValue(":email" , $_POST["email"]);
-            $req->bindValue(":users_name" , $_POST["users_name"]);
+            $req->bindValue(":user_name" , $_POST["user_name"]);
+            $req->bindValue(":users_id",$_POST["users_id"]);
+            $req->execute();
 
-            if($pwdsql !="") {
-                $req->bindValue(":pwd" , $hash);
+            if($password !="") {
+                $req = $db->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, user_name=:user_name,pwd=:pwd WHERE users_id=:users_id");
+
+                $req->bindValue(":firstname", $_POST["firstname"]);
+                $req->bindValue(":lastname" , $_POST["lastname"]);
+                $req->bindValue(":email" , $_POST["email"]);
+                $req->bindValue(":user_name" , $_POST["user_name"]);
+                $req->bindValue(":pwd" , $hash);  
+                $req->bindValue("users_id",$_POST["users_id"]);
+          
+                $req->execute();
 
             }
-
-            $req->bindValue(":users_id",$_SESSION["users_id"]);
-            $req->execute();
-            echo json_encode(["success" => true]);
-            
+            echo json_encode(["success" => true, "msg"=> "changement éffectué"]);
         } else {
             echo json_encode(["success" => false, "error" => "erreur de MAJ"]);
         }
-        
-
         break;
 
     case 'delete_id':
