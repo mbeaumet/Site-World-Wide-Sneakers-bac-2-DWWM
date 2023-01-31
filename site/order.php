@@ -1,6 +1,6 @@
 <?php
-require_once("../db_connect.php");
-require("../function.php");
+require_once("db_connect.php");
+require("function.php");
 //isAdmin();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") $method = $_POST;
@@ -8,21 +8,25 @@ else $method = $_GET;
 
 switch($method['opt']){
 
-    // - selection de commande : permet de voir toutes les commandes en cours
-    case 'select':
-        $req = $db->query("SELECT * from orders");
-        $order = $req->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode(["sucess"=>true, "orders"=> $order]);
-    
-    break;
-
 
     // - selection de commande par id : parmet de voir les commande selon l'id client
     // - vérification de l'id user ou l'id sneakers
-    case 'select_id':
+    case 'select_users_id':
         if (isset($_SESSION["users_id"])){
             $req=$db->prepare("SELECT * from orders where users_id =  ?");
             $req->execute([$_SESSION["users_id"]]);
+            $order=$req->fetch(PDO::FETCH_ASSOC);
+            echo json_encode(['sucess'=>true,'order'=>$order]);
+        }else{
+            echo json_encode(['sucess'=>false,'msg'=>"pas de commande avec cette id"]);
+        }
+
+    break;
+
+    case 'select_num':
+        if (isset($_POST["number_order"])){
+            $req=$db->prepare("SELECT * from orders where number_order =  ?");
+            $req->execute([$_POST["number_order"]]);
             $order=$req->fetch(PDO::FETCH_ASSOC);
             echo json_encode(['sucess'=>true,'order'=>$order]);
         }else{
@@ -48,42 +52,7 @@ switch($method['opt']){
         }
     break;
 
-    // - mise a jour de l'état d'une commande 
-    case 'update':
-        print_r($_POST);
-        if(isset($_POST["etat_c"]) && !empty(trim($_POST["etat_c"]))){
-            $req=$db->prepare("UPDATE orders SET etat_c=:etat_c ");
-            $req->bindValue(":etat_c",$_POST["etat_c"]);
-            $req->execute();
-            echo json_encode(["sucess"=>true,"msg"=>"changement éffectué"]);
-        } else{
-            echo json_encode(["sucess"=>false,"msg"=>"changement impossible"]);
-        }
-    
-    break;
-
-    // delete une commande qui est recu suivant un id_commande 
-    // ne peut le faire que si état commande == finis 
-
-    case 'delete':
-        if(isset($_POST["number_order"]) && !empty(trim($_POST["number_order"]))){
-            $req=$db->prepare("DELETE FROM orders WHERE number_order = ?");
-            $req->execute([$_POST["number_order"]]);
-            echo json_encode(["sucess"=>true, "msg"=>"commande supprimer"]);
-        }else{
-            echo json_encode(["sucess"=>true,"msg"=>"commande n'a pas été supprimer"]);
-
-        }
-    break;
-
     default:
         echo json_encode(["sucess"=>false, "msg"=>"demande inconnu"]);
 
 }
-
-
-
-
-
-?>
-
