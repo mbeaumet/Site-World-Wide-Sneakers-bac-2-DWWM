@@ -15,6 +15,7 @@ header{
     font-family:'Courier New', Courier, monospace;
     justify-content:space-between;
     text-align: center;
+    margin-right:350px;
 }
 
 h1{
@@ -33,26 +34,18 @@ img{
     width: 180px;
     height:160px;
 }
-
-.image_product{
-    display:flex;
-    justify-content: space-around;
-    margin-bottom: 50px;
-}
-
-p{
-    margin-top:50px;
-    text-align:center;
-    color: white;
-    margin-bottom:150px;
-}
-
-figure{
-    color:white;
+h3{
+    color:black;
     text-align: center;
+    font-size: 25px;
+    margin-left:15px;
+    margin-bottom:0px;
 }
 
-select{
-    margin-top: 35px;
-    margin-right: 50px;
+.block{
+    background-color: white;
+    border-radius: 10px;
+    width:480px;
+    margin-left:525px;
+    height: 202px;
 }

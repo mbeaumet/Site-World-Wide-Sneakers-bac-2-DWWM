@@ -31,14 +31,15 @@ switch($method["opt"]){
 
 
     case 'insert':
-        if (isset($_POST["size"],$_POST["color"],$_POST["brand"],$_POST["states"],$_POST["price"],$_POST["stock"]) && !empty(trim($_POST["size"])) && !empty(trim($_POST["color"])) && !empty(trim($_POST["brand"])) && !empty(trim($_POST["states"])) && !empty(trim($_POST["price"])) && !empty(trim($_POST["stock"]))){
-            $req= $db->prepare("INSERT INTO sneakers (brand,color,price,size,states,stock,users_id) VALUES (:brand,:color,:price,:size,:states,:stock,:users_id)");
+        if (isset($_POST["size"],$_POST["color"],$_POST["brand"],$_POST["states"],$_POST["price"],$_POST["image"],$_POST["stock"]) && !empty(trim($_POST["size"])) && !empty(trim($_POST["color"])) && !empty(trim($_POST["brand"])) && !empty(trim($_POST["image"] &&!empty(trim($_POST["states"])) && !empty(trim($_POST["price"])) && !empty(trim($_POST["stock"]))))){
+            $req= $db->prepare("INSERT INTO sneakers (brand,color,price,size,states,image,stock,users_id) VALUES (:brand,:color,:price,:size,:states,:image,:stock,:users_id)");
             // ajouter l'image 
             $req->bindValue(":brand", $_POST["brand"]);
             $req->bindValue(":color", $_POST["color"]);
             $req->bindValue(":price", $_POST["price"]);
             $req->bindValue(":size", $_POST["size"]);
             $req->bindValue(":states", $_POST["states"]);
+            $req->bindValue(":image",$_POST["image"]);
             $req->bindValue(":stock", $_POST["stock"]);
             $req->bindValue(":users_id",$_SESSION["users_id"]);
             //$req->bindValue(":image", $_POST["image"]);
@@ -52,13 +53,14 @@ switch($method["opt"]){
         break;
 
     case 'update_id':
-        if (isset($_POST["size"],$_POST["color"],$_POST["brand"],$_POST["states"],$_POST["price"],$_POST["stock"]) && !empty(trim($_POST["size"])) && !empty(trim($_POST["color"])) && !empty(trim($_POST["brand"])) && !empty(trim($_POST["states"])) && !empty(trim($_POST["price"])) && !empty(trim($_POST["stock"]))){
-            $req= $db->prepare("UPDATE sneakers SET size=:size,color=:color,brand=:brand,states=:states,price=:price,stock=:stock WHERE users_id = :users_id");
+        if (isset($_POST["size"],$_POST["color"],$_POST["brand"],$_POST["states"],$_POST["price"],$_POST["image"],$_POST["stock"]) && !empty(trim($_POST["size"])) && !empty(trim($_POST["color"])) && !empty(trim($_POST["brand"])) && !empty(trim($_POST["states"])) && !empty(trim($_POST["states"])) && !empty(trim($_POST["image"])) && !empty(trim($_POST["price"])) && !empty(trim($_POST["stock"]))){
+            $req= $db->prepare("UPDATE sneakers SET size=:size,color=:color,brand=:brand,states=:states,image=:image,price=:price,stock=:stock WHERE users_id = :users_id");
             $req->bindValue(":size",$_POST["size"]);
             $req->bindValue(":color",$_POST["color"]);
             $req->bindValue(":brand",$_POST["brand"]);
             $req->bindValue(":states",$_POST["states"]);
             $req->bindValue(":price" ,$_POST["price"]);
+            $req->bindValue(":image",$_POST["image"]);
             $req->bindValue(":stock",$_POST["stock"]);
             $req->bindValue(":users_id",$_SESSION["users_id"]);
             $req->execute();
