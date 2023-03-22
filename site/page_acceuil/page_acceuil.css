@@ -8,23 +8,29 @@ body{
 header{
     display:flex;
     justify-content: space-between;
-}   
+}
 
 .title{
-    font-family:'Courier New', Courier, monospace;
-    justify-content:space-between;
     text-align: center;
 }
 
+.dropdown-menu{
+    width: 150px;
+    height: 135px;
+    margin:5px;
+}
+
+.dropdown-item{
+    padding:0rem 1rem;
+}
+
 h1{
-    color:white;
     margin-left:100px;
     margin-right: 150px;
 
 }
 
 h2{
-    color:white;
     margin-right:55px;
 }
 
@@ -33,7 +39,8 @@ img{
     height:160px;
 }
 
-.image_product{
+
+.image_categorie{
     display:flex;
     justify-content: space-around;
     margin-bottom: 50px;
@@ -42,16 +49,23 @@ img{
 p{
     margin-top:50px;
     text-align:center;
-    color: white;
     margin-bottom:150px;
 }
 
 figure{
-    color:white;
     text-align: center;
+}
+
+figcaption{
+    font-size: 25px;
 }
 
 select{
     margin-top: 35px;
     margin-right: 50px;
+}
+
+footer{
+    display:flex;
+    justify-content: left;
 }

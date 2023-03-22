@@ -1,6 +1,6 @@
 <?php
-require_once('db_connect.php');
-require("mailer.php");
+require_once('../db_connect.php');
+require("../mailer.php");
 
 if (isset($_POST["firstname"], $_POST["lastname"],$_POST["email"],$_POST["user_name"],$_POST["pwd"]) && !empty(trim($_POST["firstname"])) && !empty(trim($_POST["lastname"])) && !empty(trim($_POST["email"])) && !empty(trim($_POST["user_name"] && !empty(trim($_POST["pwd"]))))){
 
@@ -29,6 +29,6 @@ if (!preg_match($regex, $_POST["pwd"])) {
     $req->bindValue(":email",$_POST["email"]);
     $req->bindValue(":pwd",$hash);
     $req->execute();
-    echo json_encode(["sucess" => true, "msg" => "inscrit"]);
+    echo json_encode(["success" => true, "msg" => "inscrit"]);
     mailer("m.beaumet@gmail.com", "Bienvenu {$_POST["firstname"]} {$_POST["lastname"]}", "Merci de ton inscription");
 }
