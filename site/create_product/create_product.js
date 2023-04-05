@@ -8,7 +8,7 @@ let article_id = null
 // fonction pour insérer une paire de Sneakers 
 function insertSneakers(size,brand,states,price,image,stock){
     const fd = new FormData();
-    fd.append('choice',"insert");
+    fd.append('opt',"insert");
     fd.append('size',size);
     fd.append('brand',brand);
     fd.append('states',states);

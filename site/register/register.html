@@ -14,10 +14,9 @@
 <body>
     <header>
         
-        <img src="../logo.png">
+        <img src="../logo.png" alt="logo">
 
         <div class="container">
-            <!--  id="marge" -->
             <div class="row justify-content-center">
                 <div class="col-xl-4 w-100 col-lg-4 col-md-5 bordure">
                     <!-- <div class="row justify-content-center"> -->
@@ -39,32 +38,32 @@
 
             
             <!-- Formulaire d'inscription -->
-            <form methode="post">
+            <form method ="post">
 
                 <div  class = "form_saisi" class="style_form">
-                    <label for="name">Prenom: </label>
-                    <input class="style_form" colorText="white" required type="text" class="size_block_nickname" id="firstname" name="user_name">
+                    <label for="firstname">Prenom: </label>
+                    <input class="style_form" required type="text" class="size_block_nickname" id="firstname" name="user_name">
                 </div>
 
                 <div  class = "form_saisi" class="style_form"> 
-                    <label for="name">Nom: </label>
-                    <input class="style_form" colorText="white" required type="text" class="size_block_name" id="lastname" name="user_name">
+                    <label for="lastname">Nom: </label>
+                    <input class="style_form" type="text" class="size_block_name" id="lastname" name="user_name">
                 </div>
 
                 <div  class = "form_saisi" class="style_form">
-                    <label for="name">nom d'utilisateur : </label>
-                    <input class="style_form"  colorText="white" required type="text" class="size_block_username" id="username" name="user_name">
+                    <label for="Username">nom d'utilisateur : </label>
+                    <input class="style_form" type="text" class="size_block_username" id="username" name="user_name">
                 </div>
 
                 
                 <div class = "form_saisi" >
-                    <label for="name">e-mail : </label>
-                    <input class="style_form" colorText="white" required type="text" id="email" name="user_name">
+                    <label for="email">e-mail : </label>
+                    <input class="style_form" type="text" id="email" name="user_name">
                 </div>
 
                 <div  class = "form_saisi">
-                    <label for="name">Mot de passe : </label>
-                    <input class="style_form" colorText="white" required type="password" class="size_block_mdp" id="pwd" name="user_name">
+                    <label for="pwd">Mot de passe : </label>
+                    <input class="style_form" type="password" class="size_block_mdp" id="pwd" name="user_name">
                 </div>
 
                 <div class = "form_saisi" class="marge_save">
@@ -78,10 +77,11 @@
             <a href="../login_logout/login.html">Se connecter</a>
             </p>
         </div>
+        
         <script src="register.js"></script>
 
         <footer>
-            <p>&copy WWS</p>
+            <p>&copyWWS</p>
         </footer>
 
 </body>

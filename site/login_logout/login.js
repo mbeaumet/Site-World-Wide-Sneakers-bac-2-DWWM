@@ -24,8 +24,10 @@ $("form").submit((event) => {
         },
         success: (res) => {
             if (res.success) {
+                console.log(res);
+                console.log(res.user);
                 localStorage.setItem("user",JSON.stringify(res.user));
-                window.location.replace("../page_acceuil/page_acceuil.html");
+                // window.location.replace("http://localhost/projet_fin_annee/site/welcome_page/welcome_page.html");
             }else{
                 alert(res.error);
             }
