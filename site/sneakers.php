@@ -32,7 +32,7 @@ switch($method["opt"]){
 
 
     case 'insert':
-        if (isset($_POST["size"],$_POST["color"],$_POST["brand"],$_POST["states"],$_POST["price"],$_POST["stock"]) && !empty(trim($_POST["size"])) && !empty(trim($_POST["color"])) && !empty(trim($_POST["brand"])) && !empty(trim($_POST["states"])) && !empty(trim($_POST["price"])) && !empty(trim($_POST["stock"]))){
+        if (isset($_POST["size"],$_POST["color"],$_POST["brand"],$_POST["state"],$_POST["price"],$_POST["stock"]) && !empty(trim($_POST["size"])) && !empty(trim($_POST["color"])) && !empty(trim($_POST["brand"])) && !empty(trim($_POST["state"])) && !empty(trim($_POST["price"])) && !empty(trim($_POST["stock"]))){
             
             $req= $db->prepare("INSERT INTO sneakers (brand,color,price,size,states,image,stock,users_id) VALUES (:brand,:color,:price,:size,:states,:image,:stock,:users_id)");
 
@@ -40,17 +40,38 @@ switch($method["opt"]){
             $req->bindValue(":color", $_POST["color"]);
             $req->bindValue(":price", $_POST["price"]);
             $req->bindValue(":size", $_POST["size"]);
-            $req->bindValue(":states", $_POST["state"]);
+            $req->bindValue(":state", $_POST["state"]);
             $req->bindValue(":image",$_POST["image"]);
 
-            $img = false; // Je défini img à false par défaut
-            // fonction upload définis dans function.php
-            if (isset($_FILES["image"]["name"])) $img = upload($_FILES); // Je récupère la réponse de l'upload
-                
-            if ($img) $req->bindValue(":image", "/asset/product_img".$img); // Je bind le chemin si la réponse de upload() n'est pas false
-            else $req->bindValue(":image", null); // Je bind null sinon
+		    if (isset($_FILES['image'])) {
+                // Récupère les informations sur le fichier
+                $file_name = $_FILES['image']['name'];
+                print($file_name);
+                $file_tmp = $_FILES['image']['tmp_name'];
+                $file_size = $_FILES['image']['size'];
+                $file_error = $_FILES['image']['error'];
 
-
+                // Vérifie s'il y a une erreur lors de l'envoi du fichier
+                if ($file_error === 0) {
+                    // Vérifie si le fichier est une image
+                    $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
+                    $allowed_ext = array('jpg', 'jpeg', 'png', 'gif');
+                    if (in_array($file_ext, $allowed_ext)) {
+                        // Déplace le fichier téléchargé vers un dossier de stockage
+                        $destination = 'asset/product_img' . $file_name;
+                        if (move_uploaded_file($file_tmp, $destination)) {
+                            // Affiche l'image téléchargée
+                            echo "<img src='$destination'>";
+                        } else {
+                            echo "Erreur lors de l'enregistrement du fichier.";
+                        }
+                    } else {
+                        echo "Le fichier doit être une image de type JPG, JPEG, PNG ou GIF.";
+                    }
+                } else {
+                    echo "Erreur lors de l'envoi du fichier.";
+                }
+		    }
 
             $req->bindValue(":stock", $_POST["stock"]);
             $req->bindValue(":users_id",$_SESSION["users_id"]);
@@ -60,6 +81,8 @@ switch($method["opt"]){
     
         }else {
             echo json_encode((["success"=>false, "error"=>"erreur lors de l'insertion"]));
+            print_r($_POST);
+            print_r($_FILES);
         }
     
         break;

@@ -11,10 +11,10 @@ function insertSneakers(size,brand,states,price,image,stock){
     fd.append('opt',"insert");
     fd.append('size',size);
     fd.append('brand',brand);
-    fd.append('states',states);
+    fd.append('state',states);
     fd.append('price',price);
     fd.append('image',image);
-    fd.append('stock',stock);
+    fd.append('stocks',stock);
 
     $.ajax({
         url: "../sneakers.php",
@@ -32,30 +32,31 @@ function insertSneakers(size,brand,states,price,image,stock){
             sneakers.attr("id","sneakers_"+res.id);
 
             // constante de mise en avant du nom de la chaussure / marque
-            const brand = $("<h3></h3>").text(brand);
+            const brand_html = $("<h3></h3>").text(brand);
 
             // contenaire pour le prix + état + taille + stock
             const ctn_desc = $("<div></div>");
 
             // ajout du prix de la sneakers
-            const price = $("<p></p>").text(price);
-            price.addClass("price");
+            const price_html = $("<p></p>").text(price);
+            price_html.addClass("price");
 
             // ajout de l'état de la sneakers 
-            const states = $("<p></p>").text(states);
+            const states_html = $("<p></p>").text(states);
 
             //ajout de la taille 
-            const size = $("<p></p>").text(size);
+            const size_html = $("<p></p>").text(size);
 
             // ajout du stock 
-            const stocks = $("<p></p>").text(stocks);
+            const stocks_html = $("<p></p>").text(stock);
             
             // ajout de l'image
-            // let img;
-            // if (res.image) res = $("<img>").attr("src","")
+            let img; // Je déclare la variable img sans valeur;
+            if (res.image) img = $("<img>").attr("src", "/assets/product_img/" + res.image); // Je crée une image et j'affecte la source
+
             
             // ajout dans le contenaire des élements qui le compose
-            ctn_desc.appendt(price,states,size,stocks);
+            ctn_desc.append(price_html,states_html,size_html,stocks_html);
         }
     })
 }
@@ -66,9 +67,10 @@ $("form").submit((event)=>{
     // Je récupère les valeurs rentrer dans le formulaire
     const brand = $("#brand").val(); 
     const price = $("#price").val();
-    const states = $("#states").val();
+    const states = $("#state").val();
     const size = $("#size").val();
-    const stocks = $("#stocks").val();
+    const stock = $("#stock").val();
+    const img = $("#image")
 
     insertSneakers(size,brand,states,price,image,stock);
 })
